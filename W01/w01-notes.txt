@@ -23,4 +23,4 @@ So, if you want to see the "LIVE SERVER" of your project , just like npm run dev
 1. Go into the directory you want to install bootrap to.
 2. In the command line, type npm install --save bootstrap@3  (For version 3, if there are other versions, you can use them)
 3. In your angular.json file, in the styles object, just add the file path to the bootstrap.
-    For example: "node_modules/bootstrap/dist/css/bootstrap.min.css"
+    For example: "node_modules/bootstrap/dist/css/bootstrap.min.css" 
