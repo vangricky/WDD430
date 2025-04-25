@@ -1,0 +1,26 @@
+We need a Angular project, so we will need Angular CLI, tool provided by the Angular team.
+1. Visit : https://v17.angular.io/cli
+
+-----------------------------------------------
+
+To make an angular project refer to video "Angular Setup & First App (8:08) from the Angular Video.
+Command to make new project: ng new "NAME OF PROJECT" --nostrict --standalone false --routing false
+
+    above, we see that we have some dash dash stuff. So, those are called flags. 
+
+After hitting enter to make the Angular project, it'll ask you some questions. 
+Select 'N'
+Select 'CSS'
+Type 'N'
+
+
+        HOW TO START SERVER?:
+So, if you want to see the "LIVE SERVER" of your project , just like npm run dev in react, you type: "ng serve"
+
+
+        BOOTSTRAP: HOW TO INSTALL
+
+1. Go into the directory you want to install bootrap to.
+2. In the command line, type npm install --save bootstrap@3  (For version 3, if there are other versions, you can use them)
+3. In your angular.json file, in the styles object, just add the file path to the bootstrap.
+    For example: "node_modules/bootstrap/dist/css/bootstrap.min.css"
