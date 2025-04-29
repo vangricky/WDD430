@@ -1,0 +1,8 @@
+NGSTYLES:
+
+Refer to my-second-app -> server.component.html and server.component.ts
+
+
+NGCLASS:
+
+Refer to my-second-app -> server.component.html and server.component.ts
