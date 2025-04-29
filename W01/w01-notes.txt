@@ -5,6 +5,7 @@ We need a Angular project, so we will need Angular CLI, tool provided by the Ang
 
 To make an angular project refer to video "Angular Setup & First App (8:08) from the Angular Video.
 Command to make new project: ng new "NAME OF PROJECT" --nostrict --standalone false --routing false
+(if above flags dont work, add this to the end: --strict=false --routing=false)
 
     above, we see that we have some dash dash stuff. So, those are called flags. 
 
