@@ -26,7 +26,7 @@ export class MessageEditComponent {
     this.addMessageEvent.emit(newMessage);
   }
 
-  onClear() {
+  onClearMessage() {
     this.subjectRef.nativeElement.value = '';
     this.msgTextRef.nativeElement.value = '';
   }

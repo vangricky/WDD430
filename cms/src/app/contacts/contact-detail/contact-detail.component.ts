@@ -18,7 +18,7 @@ import { Contact } from '../contact.model';
 @Component({
   selector: 'app-contact-detail',
   templateUrl: './contact-detail.component.html',
-  styleUrls: ['./contact-detail.component.css']  // fixed typo: 'styleUrl' → 'styleUrls'
+  styleUrls: ['./contact-detail.component.css'], // fixed typo: 'styleUrl' → 'styleUrls'
 })
 export class ContactDetailComponent {
   // contact: Contact = new Contact(
@@ -31,5 +31,4 @@ export class ContactDetailComponent {
   // );
 
   @Input() contact: Contact;
-
 }
