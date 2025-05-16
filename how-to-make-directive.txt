@@ -1,0 +1,2 @@
+In CLI type:
+    ng g d "NAME OF DIRECTIVE"
