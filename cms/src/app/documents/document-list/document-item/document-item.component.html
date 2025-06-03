@@ -1,4 +1,9 @@
-<a class="list-group-item clearfix documentDiv" (click)="onSelected()">
+<a
+  [routerLink]="[document.id]"
+  routerLinkActive="active"
+  class="list-group-item clearfix documentDiv"
+  (click)="onSelected()"
+>
   <!-- Display document name here -->
   <h4>{{ document.name }}</h4>
 </a>
