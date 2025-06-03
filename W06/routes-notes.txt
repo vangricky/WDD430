@@ -1,0 +1,17 @@
+in 'app.module.ts' this is where you will use Routes.
+Import Routes from @angular/router
+Make a const variable like this:
+    const appRoutes: Routes =[
+        {path: '', component: HomeComponent}
+        {path: 'users', component: UsersComponent}
+        {path: 'servers', component: ServersComponent}
+    ]
+
+I believe the path is the route. Its they keyword, then 'users' is the url after the dash /. 
+component is what page will show up when 'users' url is live.
+
+In app.module.ts, go down to imports and add 'RouterModule.forRoot(appRoots)' there. Remember to import it as well above.
+
+In html file, delete the components, and input <router-outlet></router-outlet>
+In your navlinks or wherever, a tags or so, remove the href attribute in that a tag and use routerLink="" instead.
+
