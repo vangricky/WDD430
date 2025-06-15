@@ -36,4 +36,13 @@ export class DocumentService {
     this.documents.splice(pos, 1);
     this.documentListChangedEvent.next(this.documents.slice());
   }
+
+  // addDocument(documents: Document) {
+  //   this.documents.push(document);
+  // }
+
+  updateDocument(index, newDocument: Document) {
+    this.documents[index] = newDocument;
+    this.documentListChangedEvent.next(this.documents.slice());
+  }
 }
