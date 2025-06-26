@@ -37,11 +37,30 @@ export class DocumentService {
     this.documentListChangedEvent.next(this.documents.slice());
   }
 
-  // addDocument(documents: Document) {
-  //   this.documents.push(document);
-  // }
+  getMaxId(): string {
+    let maxId = 0;
+    for (let doc of this.documents) {
+      const currentId = parseInt(doc.id, 10);
+      if (!isNaN(currentId) && currentId > maxId) {
+        maxId = currentId;
+      }
+    }
+    return (maxId + 1).toString();
+  }
 
-  updateDocument(index, newDocument: Document) {
+  addDocument(newDocument: Document) {
+    if (!newDocument) return;
+
+    newDocument.id = this.getMaxId();
+    this.documents.push(newDocument);
+    this.documentListChangedEvent.next(this.documents.slice());
+  }
+
+  updateDocument(originalDocument: Document, newDocument: Document) {
+    const index = this.documents.findIndex(
+      (doc) => doc.id === originalDocument.id
+    );
+    if (index < 0) return;
     this.documents[index] = newDocument;
     this.documentListChangedEvent.next(this.documents.slice());
   }
