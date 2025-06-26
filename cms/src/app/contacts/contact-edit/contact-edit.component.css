@@ -2,6 +2,11 @@
   border: 1px solid red;
 }
 
+/* had to copy and paste from document-edit.component.css, and paste it here... */
+input.ng-invalid {
+  border: 1px solid red;
+}
+
 .invalid.ng-invalid.ng-dirty {
   border: 1px solid red;
 }
