@@ -11,6 +11,8 @@
         <app-contact-item
           *ngFor="let contactEl of contacts"
           [contact]="contactEl"
+          cdkDrag
+          [cdkDragData]="contactEl"
           class="col-sm-12"
           dnd-draggable
           [dragEnabled]="true"
