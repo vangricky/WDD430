@@ -8,19 +8,14 @@
         </button>
       </div>
       <div class="panel-body">
-        <app-contact-item
+        <div
           *ngFor="let contactEl of contacts"
-          [contact]="contactEl"
           cdkDrag
           [cdkDragData]="contactEl"
           class="col-sm-12"
-          dnd-draggable
-          [dragEnabled]="true"
-          [dragData]="contact"
-          [dropZones]="['contactGroup']"
         >
-          >
-        </app-contact-item>
+          <app-contact-item [contact]="contactEl"></app-contact-item>
+        </div>
       </div>
     </div>
   </div>
