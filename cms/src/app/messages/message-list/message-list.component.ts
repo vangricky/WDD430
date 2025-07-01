@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-message-list',
@@ -9,14 +10,18 @@ import { MessageService } from '../message.service';
 })
 export class MessageListComponent implements OnInit {
   messages: Message[];
+  subscription: Subscription;
 
   constructor(private messageService: MessageService) {}
 
   ngOnInit() {
-    this.messages = this.messageService.getMessages();
-    this.messageService.messageChangedEvent.subscribe((messages: Message[]) => {
-      this.messages = messages;
-    });
+    this.subscription = this.messageService.messageChangedEvent.subscribe(
+      (messages: Message[]) => {
+        this.messages = messages;
+      }
+    );
+
+    this.messageService.getMessages(); // ✅ triggers the Firebase GET
   }
 
   onAddMessage(message: Message) {

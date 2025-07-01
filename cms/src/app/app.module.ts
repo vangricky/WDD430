@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 // import { DndModule } from 'ng2-dnd';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -50,6 +51,7 @@ import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule,
     DragDropModule,
   ],
