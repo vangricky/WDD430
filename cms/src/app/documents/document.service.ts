@@ -1,8 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Document } from './document.model';
-import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 import { Subject } from 'rxjs';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -14,25 +12,18 @@ export class DocumentService {
   documentSelectedEvent = new EventEmitter<Document>();
   documentListChangedEvent = new Subject<Document[]>();
 
-  constructor(private http: HttpClient) {
-    this.documents = MOCKDOCUMENTS;
-  }
+  constructor(private http: HttpClient) {}
 
   getDocuments() {
     this.http
-      .get<Document[]>(
-        'https://wdd430-ce7ad-default-rtdb.firebaseio.com/documents.json'
+      .get<{ message: string; documents: Document[] }>(
+        'http://localhost:3000/documents'
       )
       .subscribe(
-        (documents: Document[]) => {
-          this.documents = documents;
+        (responseData) => {
+          this.documents = responseData.documents;
           this.maxDocumentId = this.getMaxId();
-          this.documents.sort((a, b) => {
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
-            return 0;
-          });
-          this.documentListChangedEvent.next(this.documents.slice());
+          this.sortAndSend();
         },
         (error: any) => {
           console.error('Error fetching documents:', error);
@@ -45,13 +36,22 @@ export class DocumentService {
   }
 
   deleteDocument(document: Document) {
-    if (!document) return;
+    if (!document) {
+      return;
+    }
 
-    const pos = this.documents.indexOf(document);
-    if (pos < 0) return;
+    const pos = this.documents.findIndex((d) => d.id === document.id);
+    if (pos < 0) {
+      return;
+    }
 
-    this.documents.splice(pos, 1);
-    this.storeDocuments();
+    // Send DELETE request to NodeJS backend
+    this.http
+      .delete('http://localhost:3000/documents/' + document.id)
+      .subscribe(() => {
+        this.documents.splice(pos, 1);
+        this.sortAndSend();
+      });
   }
 
   getMaxId(): string {
@@ -65,37 +65,60 @@ export class DocumentService {
     return (maxId + 1).toString();
   }
 
-  addDocument(newDocument: Document) {
-    if (!newDocument) return;
+  addDocument(document: Document) {
+    if (!document) {
+      return;
+    }
 
-    newDocument.id = this.getMaxId();
-    this.documents.push(newDocument);
-    this.storeDocuments();
+    // Set id to empty so the backend can assign it
+    document.id = '';
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    // Send HTTP POST request to NodeJS server
+    this.http
+      .post<{ message: string; document: Document }>(
+        'http://localhost:3000/documents',
+        document,
+        { headers: headers }
+      )
+      .subscribe((responseData) => {
+        // Add new document to local array
+        this.documents.push(responseData.document);
+        this.sortAndSend();
+      });
   }
 
   updateDocument(originalDocument: Document, newDocument: Document) {
-    const index = this.documents.findIndex(
-      (doc) => doc.id === originalDocument.id
-    );
-    if (index < 0) return;
+    if (!originalDocument || !newDocument) return;
 
+    const pos = this.documents.findIndex((d) => d.id === originalDocument.id);
+    if (pos < 0) return;
+
+    // Set the same ID
     newDocument.id = originalDocument.id;
-    this.documents[index] = newDocument;
-    this.storeDocuments();
-  }
 
-  storeDocuments() {
-    const documentsJson = JSON.stringify(this.documents);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     this.http
       .put(
-        'https://wdd430-ce7ad-default-rtdb.firebaseio.com/documents.json',
-        documentsJson,
+        'http://localhost:3000/documents/' + originalDocument.id,
+        newDocument,
         { headers: headers }
       )
       .subscribe(() => {
-        this.documentListChangedEvent.next(this.documents.slice());
+        this.documents[pos] = newDocument;
+        this.sortAndSend();
       });
+  }
+
+  private sortAndSend() {
+    this.documents.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
+
+    this.documentListChangedEvent.next(this.documents.slice());
   }
 }
