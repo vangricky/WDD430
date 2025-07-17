@@ -1,0 +1,60 @@
+.required.ng-invalid {
+  border: 1px solid red;
+}
+
+/* had to copy and paste from document-edit.component.css, and paste it here... */
+input.ng-invalid {
+  border: 1px solid red;
+}
+
+.invalid.ng-invalid.ng-dirty {
+  border: 1px solid red;
+}
+
+.pad-left-right {
+  padding-left: 0.1rem;
+}
+
+.deleteButton {
+  margin-top: 1.5rem;
+  margin-left: -1.2rem;
+  width: 3.4rem;
+}
+
+.buttonDiv {
+  margin-top: 1.5rem;
+}
+
+.groupDiv {
+  min-height: 6rem;
+  border: solid thin lightgrey;
+}
+
+.dragMsg {
+  font-size: 2rem;
+  color: darkgrey;
+  margin-left: 3rem;
+}
+
+/* Extra css */
+.group-drop-zone {
+  border: 2px dashed #ccc;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  min-height: 150px;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  overflow-y: auto;
+}
+
+.group-contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

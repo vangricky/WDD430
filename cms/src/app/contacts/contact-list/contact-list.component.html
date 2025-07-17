@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-6">
+            <span class="title pad-left-right">Contacts</span>
+          </div>
+          <div class="col-xs-6 text-right">
+            <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px">
+          <div class="col-xs-12">
+            <div class="input-group">
+              <input
+                type="text"
+                #searchBox
+                (keyup)="search(searchBox.value)"
+                class="form-control"
+                placeholder="Enter a search value"
+              />
+              <div
+                class="input-group-addon glyphicon glyphicon-search"
+                (click)="search(searchBox.value)"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div
+          *ngFor="let contactEl of contacts | contactsFilter : term"
+          cdkDrag
+          [cdkDragData]="contactEl"
+          class="col-sm-12"
+        >
+          <app-contact-item [contact]="contactEl"></app-contact-item>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+Refer to W02 -> databindingproblem
+
+1. In the app.component.ts: add the variable in the export, make it equal a empty string.
+    For example: 
+
+        export class AppComponent {
+        title = 'databindingproblem';
+        username = '';              // this is the variable we made, it will go here.
+        }
+
+2. In app.component.html: in an input field where we can type something, add the attribute: [(ngModel)]=""
+    For example:
+
+              <input type="text" class="form-control" [(ngModel)]="username">
+
+3. Open app.module.ts in the root folder. Import FormsModule and put that FormsModule into the imports.
+    For example:
+
+    import { FormsModule } from '@angular/forms';
+
+      imports: [
+    BrowserModule,
+    FormsModule
+  ],
+
+  4. Now, we can add a String Interpolation in a p tag, in our html.
+    For example:
+    <p> {{ username }}  </p>

@@ -1,0 +1,14 @@
+TypeScript is a "superset" to JavaScript
+
+TS adds more to the JS syntax. It adds static typing to JS.
+
+TS code doesn't run in the browser. It will fail if you do so. You need to compile TS into JS.
+
+After installing the TS npm, you gotta run 'npx tsc'
+
+Angular and Angular 2 are totally different from one another.
+It's a complete rewrite.
+
+A new version released every 6 months.
+
+Also, all Angulars (Angular 2, 3, 4, 5, 6 and so on...) are referred to as just: Angular :)

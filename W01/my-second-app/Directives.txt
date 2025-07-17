@@ -1,0 +1,3 @@
+Refer to servers component folder. servers.component.html. line 20.
+    <p *ngIf="serverCreated">Server was created, server name is {{serverName}} </p>
+    

@@ -1,0 +1,72 @@
+How to make a component:
+
+1. Make a folder in src, name it according to what the component is about, navbar, sidebar, etc.
+2. In the folder, make a component ts and html file. Naming matters, name it like this:
+    foldername.component.html
+    foldername.component.ts
+3. In the .html file, you can write html in it. Make the component, so make it a sidebar or navbar, add <li></li>, do whatever to make a navbar...
+4. In the .ts file, you will  code something like this:
+
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-server',
+    templateUrl: './server.component.html'
+})
+export class ServerComponent {
+
+}
+
+5. Look at the .ts code carefully, you make the selector name, name it something relevant because you will
+    need to call the selector later on.
+6. templateUrl, you will need to route the .html file that you made.
+7. Don't forget to export this file, name it specifically your component name, and add Component to make it easier to remember
+8. In your src folder, open the 'app.modules.ts file', import your component and route it.
+9. In the same module file, add the component name that you made when you 'exported it' in the NgModel, declarations property.
+10. Go to the src folder again, in there, open the app.component.html file and use your Selector that you made,
+    for example, in line 13 above, we named it 'app-server', so now thats a selector that will have the contents 
+    of whatever you made in server.component.html file. Add the selector to the src/app.component.html file and then you should
+    be able to see your contents on the localhost browser.
+
+
+********************   Making Components using the CLI  *************************
+in the command, you can open a new command and keep the localhost commandline open
+    type 'ng g c servers'
+    which stands for: ng generate component servers (both will work, but ng g c servers is faster way to make component with all needed files)
+
+IMPORTANT: make sure you cd into the correct folder! if not, thats okay, but do so :)
+
+So, after the new component is made, we can get rid of that .spec.ts file, its used for testing.
+Now, we can go into the servers.component.html, lets use the selector we made for our ServerComponent several times.
+Remember, go into app.module.ts to add our new component.
+You will see that its already been added, most likey using the CLI !!!
+The selector for servers component is called app-servers.
+It seems like the naming for new component selectors are: 'app-(componentname)'
+
+IMPORTANT!!!! 
+ALL PROPERTIES NEEDS TO HAVE A 'template' PROPERTY!!!
+FOR EXAMPLE, IN servers.component.ts, template NEEDS TO BE A PROPERTY IN THE @COMPONENT CLASS
+CAN BE NAMED JUST template or templateUrl
+
+
+********************  Understanding Databinding  *************************
+
+Databinding = Communication
+
+String Interpolation: {{ data }}
+Property Binding: [property]="data"
+Event Binding: (event)="expression"
+Two-Way-Binding [(ngModel)]="data"
+
+// String Interpolation
+Refer to server.component.html and server.component.ts
+
+// Property Binding
+Refer to servers.component.html and servers.component.ts
+
+// Event Binding
+Refer to servers.component.html and servers.component.ts
+
+// Passing and Using Data With Event Binding
+Refer to servers.component.html and servers.component.ts
+
